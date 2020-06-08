@@ -1,14 +1,26 @@
-\documentclass[aspectratio=169]{beamer}
+%\documentclass[aspectratio=169]{beamer}
 % TODO cambiar a la de dalt
-%\documentclass[aspectratio=169,handout]{beamer}
+\documentclass[aspectratio=169,handout]{beamer}
 \usepackage{pgfpages}
 
 %
-% ============ TODO ============
+% ============ APARTATS ============
 % i) Definició del models SUM I MAX.
 % ii) Computar la Best response és NP-hard en el dos models (SUM I MAX) 
 %     (Theorem 1 i doneu tots els details que pugueu tan per MAX com per SUM)
 %
+
+% ============== TODO ===============
+% - Network Creation Games:
+%    + explicar PoS i PoA 
+% - Model SUM: 
+%    + diameter, etc
+% - Model MAX:
+%    + diameter, etc
+% - k-MEDIAN
+%    + explicar per sobre com sabem que es NP-hard
+% - k-CENTER
+%    + explicar per sobre com sabem que es NP-hard
 
 %\setbeameroption{show only notes}
 \setbeameroption{show notes on second screen}
@@ -38,6 +50,7 @@ backend=biber,
 \usepackage[scale=2]{ccicons}
 \usepackage{xspace}
 \usepackage{graphicx}
+%\usepackage{enumitem}
 
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -72,9 +85,18 @@ backend=biber,
 \section{Introducció}
 
 \begin{frame}{Introducció}
-    Hola
+    \setlength{\leftmargini}{10em}
+    \begin{itemize}
+        \itemsep=3mm
+        \item[\textbf{Article:}] Bounded Budget Network Creation Game
+        \item[\textbf{Autors:}] Sayan Ehsani, Saber Shokat Fadaee, Mohammadamin Fazli, Abbas Mehrabian, Sina Sadeghian Sadeghabad, Mohammadali Safari and Morteza Saghafian
+        \item[\textbf{Publicació:}] ACM Transaction on Algorithms, Vol. 11, No. 4, Article 34
+        \item[\textbf{Data de publicació:}] Abril 2015
+        \item[\textbf{DOI:}] 10.1145/2701615
+    \end{itemize}
 \end{frame}
 
+\subsection{Network Creation Games}
 \setbeamercovered{transparent}
 \begin{frame}{Network Creation Games}
     %Un Network Creation Game és un joc que modela la creació d'una xarxa a través d'un graf.
@@ -89,6 +111,10 @@ backend=biber,
     % One of the classic models by Fabrikant et al. [PODC’03] is the network creation game,where agents correspond 
     % to nodes in a network which buy incident edges for the price ofαperedge to minimize their total distance to all other nodes
 
+\note{
+ Hi ha moltes variants de jocs. La que expliques aqui es la mes tipica, pero hi ha mes
+ i la que s estudia al paper es un altre.
+}
     
     \onslide<2->{\textbf{Cada node $u$ representa un jugador} i \textbf{cada jugador té una estratègia $S_u$}, representada per un conjunt d'arestes que el jugador
     crea, on cada aresta té cost de creació $\alpha$.}
@@ -111,15 +137,15 @@ backend=biber,
 \begin{frame}{Network Creation Games}
     Cada node vol minimitzar la seva funció de cost, que definim com:
     \begin{equation*}
-        C(u) = \alpha n_u + \sum_{v \in V}\dist(u,v)
+        C(u) = \alpha n_u + \sum_{v \in V(G)}\dist(u,v)
     \end{equation*}
-    on $n_u = |S_u|$ i $V$ és el conjunt de vèrtex del graf.
+    on $n_u = |S_u|$ i $G$ és el graf que representa la xarxa.
     
     \vspace{3mm}
     
     Definim el \textbf{cost social} com la suma dels costos de tots els nodes:
     \begin{equation*}
-        SC(S) = \alpha |E| + sum_{u,v \in V} \dist(u,v)
+        SC(S) = \alpha |E| + \sum_{u,v \in V(G)} \dist(u,v)
     \end{equation*}
 \end{frame}
 
@@ -191,7 +217,7 @@ Definim la funció de cost del model $\SUM$ com:
 Com que $C_{inf} = n^2$ es garanteix que si un canvi d estratègia en u disminueix
 el nombre de components connexos $c_{\MAX}$ es redueix.
 
-Per tant s incentiva la reduccio de components connexos al igual que a $\SUM$.
+Per tant s incentiva la reducció de components connexos al igual que a $\SUM$.
 }
 
 \end{frame}
@@ -229,7 +255,8 @@ El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de comp
     \vspace{2em}
     
     La demostració es basa en una reducció de \kcenter a $\MAX$ i de \kmedian a $\SUM$.
-    On \kcenter i \kmedian son NP-hard~\cite{hsu_easy_1979,lin_e-approximations_1992}.
+    On \kcenter i \kmedian són 
+    NP-hard~\cite{hsu_easy_1979,lin_e-approximations_1992,megiddo_complexity_1984}.
     
 \end{frame}
 
@@ -263,22 +290,25 @@ vèrtex que minimitzi la distancia màxima de un vèrtex a $S$:
     
     \vspace{2em}
     
-    La millor resposta (\emph{best response}) del jugador $n+1$ es una solució òptima de \kcenter.
+    La millor resposta (\emph{best response}) del jugador $n+1$ amb les estratègies de la resta marcades
+    per $G$ es una solució òptima de \kcenter.
     
     \note{
         %TODO: explicar en detall aixo
+        
+        La distancia de qualsevol vèrtex a $n+1$ serà sempre 1 + la distancia a la solució de \kcenter (conjunt $S$)
     }
 \end{frame}
 
-\begin{frame}
-\begin{tikzpicture}[shorten >=1pt,->]
-  \tikzstyle{vertex}=[circle,fill=black!25,minimum size=12pt,inner sep=2pt]
-  \node[vertex] (G_1) at (-1,-1) {1};
-  \node[vertex] (G_2) at (0,0)   {2};
-  \node[vertex] (G_3) at (1,-1)  {3};
-  \draw (G_1) -- (G_2) -- (G_3) -- cycle;
-\end{tikzpicture}
-\end{frame}
+%\begin{frame}
+%\begin{tikzpicture}[shorten >=1pt,->]
+%  \tikzstyle{vertex}=[circle,fill=black!25,minimum size=12pt,inner sep=2pt]
+%  \node[vertex] (G_1) at (-1,-1) {1};
+%  \node[vertex] (G_2) at (0,0)   {2};
+%  \node[vertex] (G_3) at (1,-1)  {3};
+%  \draw (G_1) -- (G_2) -- (G_3) -- cycle;
+%\end{tikzpicture}
+%\end{frame}
 
 %\subsection{\kcenter NP-hard}
 %\begin{frame}{\kcenter NP-hard}
@@ -334,23 +364,30 @@ On $m_S(v)$ es el vèrtex de $S$ mes proper a $v$.
 % TODO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{columns}
-\begin{column}{0.49\textwidth}
-\begin{align*}
-    V' &= V(G) \backslash \{v_i \} \\
-    k &= b_i \\
-    y_j &= s_{ij} \\
-    S_i &= \{s_{i1}, s_{i2}, \dots, s_{ib_i}\}
-\end{align*}
-\end{column}
+Apliquem el mateix principi que en el cas de \kcenter i $\MAX$:
 
-\begin{column}{0.49\textwidth}
-\begin{align*}
-    C_i &= \sum _{v_j \in V'} s_{ij} \dist(v_i, v_j) \\
-\end{align*}
-\end{column}
+    \vspace{2em}
 
-\end{columns}
+    Donat un graf no dirigit $H$ de $n$ vèrtex i un enter positiu $k$ volem trobar una solució òptima a
+    \kmedian.
+    
+    \vspace{2em}
+    
+    Considerem ara un graf $G$ tal que $U(G) = H$ i un joc $ (b_1, b_2, \dots , b_n, b_{n+1})\text{-BG} $ on
+    $b_i$ es el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
+    
+    \vspace{2em}
+    
+    La millor resposta (\emph{best response}) del jugador $n+1$ amb les estratègies de la resta marcades
+    per $G$ es una solució òptima de \kmedian.
+    
+    \note{
+        %TODO: explicar en detall aixo
+        
+        La distancia de qualsevol vèrtex a $n+1$ serà sempre 1 + la distancia a la solució de \kmedian (conjunt $S$)
+        
+        La suma es nomes dels elements mes propers, per tant es manté la condició de $\dist$ a $m_S(v)$
+    }
 
 \end{frame}
 
@@ -361,6 +398,9 @@ On $m_S(v)$ es el vèrtex de $S$ mes proper a $v$.
 
 \begin{frame}{Bibliografia}
 \printbibliography
+\end{frame}
+
+\begin{frame}
 \end{frame}
 
 \end{document}
