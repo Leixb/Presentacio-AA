@@ -1,6 +1,6 @@
-%\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169]{beamer}
 % TODO cambiar a la de dalt
-\documentclass[aspectratio=169,handout]{beamer}
+%\documentclass[aspectratio=169,handout]{beamer}
 \usepackage{pgfpages}
 
 %
@@ -160,6 +160,7 @@ Definicions:
     \item<4-> $\dist(u, v)$ denota la distancia entre $u$ i $v$ a $U(G)$.
     \item<5-> Si $u$ i $v$ estan en components connexos diferents de $U(G)$ llavors
         $\dist(u, v) = C_{inf} = n^2$.
+    \item<6-> No tenim $\alpha$, es a dir, les arestes no tenen cost.
         
     \note{El motiu del valor de $C_{inf} = n^2$ s'explica mes endavant}
     
@@ -193,6 +194,8 @@ Definicions:
 
 \begin{frame}{Definició dels models}
     En el paper\cite{ehsani_bounded_2015} es consideren 2 models de \emph{bounded budget network creation games}:
+    
+    \vspace{1.5em}
     
     \begin{itemize}
     \item $\SUM$
