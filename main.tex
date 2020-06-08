@@ -1,0 +1,367 @@
+\documentclass[aspectratio=169]{beamer}
+% TODO cambiar a la de dalt
+%\documentclass[aspectratio=169,handout]{beamer}
+\usepackage{pgfpages}
+
+%
+% ============ TODO ============
+% i) Definició del models SUM I MAX.
+% ii) Computar la Best response és NP-hard en el dos models (SUM I MAX) 
+%     (Theorem 1 i doneu tots els details que pugueu tan per MAX com per SUM)
+%
+
+%\setbeameroption{show only notes}
+\setbeameroption{show notes on second screen}
+
+\usepackage[catalan]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[style=english]{csquotes}
+
+\usepackage[
+backend=biber,
+%style=apa,
+%sorting=ynt
+]{biblatex}
+\addbibresource{biblio.bib}
+
+\usetheme{Madrid}
+\useinnertheme{rectangles}
+\usefonttheme{professionalfonts}
+\usecolortheme{crane}
+\setbeamertemplate{blocks}[default]
+\setbeamersize{text margin left=10mm,text margin right=10mm} 
+
+\usepackage{times} 
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{xspace}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\SUM}{SUM}
+\DeclareMathOperator{\MAX}{MAX}
+
+\newcommand{\kcenter}{\texorpdfstring{$k$}{k}-\textsc{center}\xspace}
+\newcommand{\kmedian}{\texorpdfstring{$k$}{k}-\textsc{median}\xspace}
+
+\setbeamercovered{transparent}
+
+\title[Bounded Budget Network Creation Game]{Bounded Budget Network Creation Game}
+\subtitle{}
+\author{Grup 1}
+\institute{UPC - AA}
+\date{10 de juny de 2020}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+  \note{hello}
+  \note[item]{test}
+\end{frame}
+
+\begin{frame}{Index}
+  \tableofcontents
+\end{frame}
+
+\section{Introducció}
+
+\begin{frame}{Introducció}
+    Hola
+\end{frame}
+
+\setbeamercovered{transparent}
+\begin{frame}{Network Creation Games}
+    %Un Network Creation Game és un joc que modela la creació d'una xarxa a través d'un graf.
+    
+    \onslide<1->{Un \emph{Network creation game} es centra en \textbf{modelar xarxes} de la vida real des del punt de vista de la \textbf{teoria de jocs}.}
+    
+    \vspace{3mm}
+    
+    % nose
+    
+    % Selfish Network Creation focuses on modeling real world networks from a game-theoretic pointof view. 
+    % One of the classic models by Fabrikant et al. [PODC’03] is the network creation game,where agents correspond 
+    % to nodes in a network which buy incident edges for the price ofαperedge to minimize their total distance to all other nodes
+
+    
+    \onslide<2->{\textbf{Cada node $u$ representa un jugador} i \textbf{cada jugador té una estratègia $S_u$}, representada per un conjunt d'arestes que el jugador
+    crea, on cada aresta té cost de creació $\alpha$.}
+    
+    \vspace{3mm}
+    
+    % en el nostre cas es al reves, cada vertex te un presupost de edges a comprar. no tenen alpha.
+    
+    \onslide<3->{El vector d'estratègia $S = (S_1,...,S_n)$ conté l'estratègia de cada jugador i $G(S)$ és el graf no-dirigit resultant d'aplicar les estratègies.}
+    
+    \vspace{3mm}
+    
+    \onslide<4->{\textbf{Objectiu} de cada node:
+    \begin{itemize}
+        \item Minimitzar la creació d'arestes
+        \item Minimitzar la distància als altres nodes
+    \end{itemize}}
+\end{frame}
+
+\begin{frame}{Network Creation Games}
+    Cada node vol minimitzar la seva funció de cost, que definim com:
+    \begin{equation*}
+        C(u) = \alpha n_u + \sum_{v \in V}\dist(u,v)
+    \end{equation*}
+    on $n_u = |S_u|$ i $V$ és el conjunt de vèrtex del graf.
+    
+    \vspace{3mm}
+    
+    Definim el \textbf{cost social} com la suma dels costos de tots els nodes:
+    \begin{equation*}
+        SC(S) = \alpha |E| + sum_{u,v \in V} \dist(u,v)
+    \end{equation*}
+\end{frame}
+
+\subsection{Bounded Budget Network Creation Game}
+\begin{frame}{Bounded Budget Network Creation Game}
+Definicions:
+\begin{itemize}
+    \item<1-> Donat un graf dirigit $G$, denotem el seu conjunt de vèrtex com $V(G)$.
+    \item<2-> $U(G)$ es un graf no-dirigit obtingut ignorant les direccions en $G$.
+    \item<3-> Si $\vec{uv}, \vec{vu} \in G$ llavors $uv \in U(G)$ te multiplicitat 2 i
+        anomenem la parella $\{u, v\}$ \emph{brace}.
+    \item<4-> $\dist(u, v)$ denota la distancia entre $u$ i $v$ a $U(G)$.
+    \item<5-> Si $u$ i $v$ estan en components connexos diferents de $U(G)$ llavors
+        $\dist(u, v) = C_{inf} = n^2$.
+        
+    \note{El motiu del valor de $C_{inf} = n^2$ s'explica mes endavant}
+    
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Bounded Budget Network Creation Game}
+    Denotem un \emph{Bounded budget network creation game} com:
+    $$ (b_1, b_2, \dots , b_n)\text{-BG} $$
+    On $b_1,b_2, \dots , b_n$ son enters no negatius que representen el \emph{budget} de cada jugador ($n$ es el nombre de jugadors).
+    
+    \vspace{3mm}
+    
+    Cada jugador $i$ te assignada una estratègia $S_i \subseteq \{1, 2, \dots , n\} \backslash \{i\}$ amb
+    $|S_i| = b_i$
+    
+    \vspace{3mm}
+    
+    Podem construir un graf $G$ a partir del conjunt de totes les estratègies afegint un vèrtex $\vec{u_iv_j}$
+    a $G$ si i nomes si $j \in S_i$. Anomenen a aquests grafs \emph{realitzadors} de
+    $ (b_1, b_2, \dots , b_n)\text{-BG} $.
+    
+    \vspace{3mm}
+    
+    Direm que un vèrtex esta en la millor resposta (\emph{best response}) si no pot disminuir el seu
+    cost mantenint fixes les estratègies de la resta de vèrtex.
+\end{frame}
+
+
+\section{Definició dels models}
+
+\begin{frame}{Definició dels models}
+    En el paper\cite{ehsani_bounded_2015} es consideren 2 models de \emph{bounded budget network creation games}:
+    
+    \begin{itemize}
+    \item $\SUM$
+    \item $\MAX$
+    \end{itemize}
+    
+    \vspace{3em}
+    
+    Els models difereixen en la definició de la funció de cost.
+\end{frame}
+
+\subsection{\texorpdfstring{$\SUM$}{SUM}}
+\begin{frame}{Model $\SUM$}
+
+Definim la funció de cost del model $\SUM$ com:
+
+\begin{equation}
+    c_{\SUM}(u) = \sum_{v \in V(G)} \dist(u, v)
+\end{equation}
+
+\note{
+Com que $C_{inf} = n^2$ es garanteix que si un canvi d estratègia en u disminueix
+el nombre de components connexos $c_{\MAX}$ es redueix.
+
+Per tant s incentiva la reduccio de components connexos al igual que a $\SUM$.
+}
+
+\end{frame}
+
+\subsection{\texorpdfstring{$\MAX$}{MAX}}
+\begin{frame}{Model $\MAX$}
+
+Definim la funció de cost del model $\MAX$ com:
+
+\begin{equation}
+    c_{\MAX}(u) = \max \{ \dist(u, v) : v \in V(G) \} + (\kappa - 1)n^2
+\end{equation}
+
+On $\kappa$ es el nombre de components connexos de $U(G)$.
+
+\vspace{2em}
+
+El primer terme $\max \{ \dist(u, v) : v \in V(G) \}$ es l'excentricitat de $u$.
+
+El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de components connexos.
+
+\end{frame}
+
+\section{Computar best response \'{e}s NP-hard en ambdós models}
+\subsection{Theorem 2.1}
+\begin{frame}{Teorema}
+
+    Al paper s'enuncia i demostra el següent teorema:
+    
+    \begin{theorem}
+    The problem of finding a player's best response in both $\MAX$ and $\SUM$ versions of the bounded
+    budget network creation games is NP-hard.
+    \end{theorem}
+    
+    \vspace{2em}
+    
+    La demostració es basa en una reducció de \kcenter a $\MAX$ i de \kmedian a $\SUM$.
+    On \kcenter i \kmedian son NP-hard~\cite{hsu_easy_1979,lin_e-approximations_1992}.
+    
+\end{frame}
+
+\subsection{\kcenter}
+\begin{frame}{\kcenter}
+
+\begin{problem}[\kcenter]
+Donat un graf no-dirigit $H$ i un enter positiu $k$ es vol trobar un subconjunt $S$ de $k$
+vèrtex que minimitzi la distancia màxima de un vèrtex a $S$:
+
+\begin{equation}
+\min_{S \subseteq V(H):|S|=k} \left( \max_{v \in V(H)} \dist(v, S) \right)
+\end{equation}
+\end{problem}
+
+\begin{equation}
+    \dist(v, S) = \min \{ \dist(v, u) : u \in S \}
+\end{equation}
+
+\end{frame}
+
+\subsection{Reducció de \kcenter a \texorpdfstring{$\MAX$}{MAX}}
+\begin{frame}{Reducció de \kcenter a $\MAX$}
+    Donat un graf no dirigit $H$ de $n$ vèrtex i un enter positiu $k$ volem trobar una solució òptima a
+    \kcenter.
+    
+    \vspace{2em}
+    
+    Considerem ara un graf $G$ tal que $U(G) = H$ i un joc $ (b_1, b_2, \dots , b_n, b_{n+1})\text{-BG} $ on
+    $b_i$ es el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
+    
+    \vspace{2em}
+    
+    La millor resposta (\emph{best response}) del jugador $n+1$ es una solució òptima de \kcenter.
+    
+    \note{
+        %TODO: explicar en detall aixo
+    }
+\end{frame}
+
+\begin{frame}
+\begin{tikzpicture}[shorten >=1pt,->]
+  \tikzstyle{vertex}=[circle,fill=black!25,minimum size=12pt,inner sep=2pt]
+  \node[vertex] (G_1) at (-1,-1) {1};
+  \node[vertex] (G_2) at (0,0)   {2};
+  \node[vertex] (G_3) at (1,-1)  {3};
+  \draw (G_1) -- (G_2) -- (G_3) -- cycle;
+\end{tikzpicture}
+\end{frame}
+
+%\subsection{\kcenter NP-hard}
+%\begin{frame}{\kcenter NP-hard}
+%\cite{hsu_easy_1979}
+%\end{frame}
+
+\subsection{\kmedian}
+\begin{frame}{\kmedian}
+
+\begin{problem}[\kmedian]
+Donat un graf no dirigit $H$ i un enter positiu $k$ es vol trobar un conjunt $S \subseteq V(H)$ de $k$ vèrtex
+tal que es minimitzi la suma de les distancies de cada vèrtex en $V(H)$ a el vèrtex mes proper
+de $S$.
+
+\begin{equation}
+\min_{S \subseteq V(H):|S|=k} \left(
+    \sum _{v \in V(G)} \dist(v, m_S(v))
+\right)
+\end{equation}
+
+On $m_S(v)$ es el vèrtex de $S$ mes proper a $v$.
+
+%Es pot formular el problema en termes de programació lineal de minimització:
+%
+%\begin{columns}[T]
+%
+%\begin{column}{0.49\textwidth}
+%\begin{equation}
+%    \sum_{i \in V} \sum_{j \in V} \dist(i, j)*x_{ij}
+%\end{equation}
+%\begin{align*}
+%    x_{ij} &\leq y_j, &i,j \in V \\
+%    x_{ij}, y_j &\in \{0, 1\}, &i,j \in V \\
+%\end{align*}
+%\end{column}
+%
+%\begin{column}{0.49\textwidth}
+%\begin{align*}
+%    \sum_{j \in V} x_{ij} &= 1, & i \in V \\
+%    \sum_{j \in V} y_j &\leq k, \\
+%\end{align*}
+%\end{column}
+%
+%\end{columns}
+
+\end{problem}
+
+\end{frame}
+
+\subsection{Reducció de \kmedian a \texorpdfstring{$\SUM$}{SUM}}
+\begin{frame}{Reducció de \kmedian a $\SUM$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{columns}
+\begin{column}{0.49\textwidth}
+\begin{align*}
+    V' &= V(G) \backslash \{v_i \} \\
+    k &= b_i \\
+    y_j &= s_{ij} \\
+    S_i &= \{s_{i1}, s_{i2}, \dots, s_{ib_i}\}
+\end{align*}
+\end{column}
+
+\begin{column}{0.49\textwidth}
+\begin{align*}
+    C_i &= \sum _{v_j \in V'} s_{ij} \dist(v_i, v_j) \\
+\end{align*}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+%\subsection{\kmedian NP-hard}
+%\begin{frame}{\kmedian NP-hard}
+%\cite{lin_e-approximations_1992}
+%\end{frame}
+
+\begin{frame}{Bibliografia}
+\printbibliography
+\end{frame}
+
+\end{document}
+
