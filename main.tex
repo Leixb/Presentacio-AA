@@ -1,6 +1,6 @@
-%\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169]{beamer}
 % TODO cambiar a la de dalt
-\documentclass[aspectratio=169,handout]{beamer}
+%\documentclass[aspectratio=169,handout]{beamer}
 \usepackage{pgfpages}
 
 %
@@ -23,7 +23,7 @@
 %    + explicar per sobre com sabem que es NP-hard
 
 %\setbeameroption{show only notes}
-%\setbeameroption{show notes on second screen}
+\setbeameroption{show notes on second screen}
 
 \usepackage[catalan]{babel}
 \usepackage[utf8]{inputenc}
@@ -420,6 +420,15 @@ Es demostra que:
     
 \end{frame}
 
+\note[itemize]{
+\item A l’article enuncia i demostra el següent teorema
+diu que el problema de trobar la best response tant en la version $\SUM$ com en la versió $\MAX$ del bounded budget network creation game es NP-hard.
+\item La demostració que dona es basa en una reducció de 
+\item \kcenter a la versió $\MAX$ i de 
+\item \kmedian a la versió $\SUM$. 
+\item On tant \kcenter com \kmedian son NP-hard.
+}
+
 % \begin{frame}{Articles citats}
 % \begin{columns}
 
@@ -465,19 +474,26 @@ vèrtexs que minimitzi la distància màxima de un vèrtex a $S$:
 \end{equation}
 
 \end{frame}
+\note[itemize]{
+\item El problema de \kcenter ens diu que donat un graf no dirigit $H$ i un enter positiu $k$,
+es vol trobar un conjunt $S$ de $k$ vèrtex que minimitza la distancia màxima de un vèrtex a $S$:
+\item Es pot expressar tal com es mostra.
+\item La distància d'un vèrtex $v$ a $S$ és la distancia mínima de $v$ al vèrtex de $S$ mes proper 
+}
 
 \begin{frame}{\kcenter}
     \begin{figure}
     \includegraphics[width=0.5\textwidth]{k-center_dominating_set}
     \caption{Wen-Lian Hsu i George L. Nemhauser. (1979) \cite{hsu_easy_1979} }
     \end{figure}
-    \note[item]{
-        \item al article de Hsu i Nemhauser es demostra que la $\alpha$-aproximació de \kcenter és NP-hard per $\alpha<2$
-        fent una reducció de dominating set (NP-complet).
-        \item Un graf te un dominating set de mida $k$ iff el \kcenter amb cost 1 per tots els edges
-        te com a millor resposta de tots els nodes un valor tal que la distancia és 1.
-    }
 \end{frame}
+\note[itemize]{
+    \item L'article cita un article de Hsu i Nemhauser en el cual es demostra que la 
+    $\alpha$-aproximació de \kcenter és NP-hard per $\alpha<2$
+    fent una reducció de dominating set (NP-complet).
+    \item Un graf te un dominating set de mida $k$ iff el \kcenter amb cost 1 per tots els edges
+    te com a millor resposta de tots els nodes un valor tal que la distancia és 1.
+}
 
 \subsection{Reducció de \kcenter a \texorpdfstring{$\MAX$}{MAX}}
 \begin{frame}{Reducció de \kcenter a $\MAX$}
@@ -500,6 +516,21 @@ vèrtexs que minimitzi la distància màxima de un vèrtex a $S$:
         La distancia de qualsevol vèrtex a $n+1$ serà sempre 1 + la distancia a la solució de \kcenter (conjunt $S$)
     }
 \end{frame}
+\note[itemize]{
+\item Per fer la reducció de \kcenter a $\MAX$ tenim que donat un graf no dirigit $H$ amb $n$ vertex i un enter positiu $k$
+volem trobar una solució optima a \kcenter.
+
+\item Si considerem ara un graf $G$ tal que $U(G) = H$ i un joc BG on $b_i$ es el grau de sortida del vertex $i$-essim de
+$G$ i $b_{n+1} = k$
+
+\item tenim que la millor resposta del jugador $n+1$ amb les estratègies fixades per $G$ per la resta de jugadors 
+es una solució òptima de \kcenter.
+
+\item Aixo ho podem veure si ens adonem que la estratègia de $b_{n+1}$ el que fa es seleccionar $k$
+vèrtex del graf tal que la distancia màxima a la resta dels vèrtex del graf es mínima. I com que el vèrtex $n+1$ 
+esta sempre a distancia 1 del vèrtex  de la seva estratègia $S$, la distancia de qualsevol vèrtex a $S$ serà
+igual a la distancia al vèrtex $n+1$ - 1 i per tant estem minimitzant la distancia màxima al conjunt $S$.
+}
 
 \subsection{\kmedian}
 \begin{frame}{\kmedian}
@@ -521,15 +552,17 @@ On $m_S(v)$ és el vèrtex de $S$ més proper a $v$.
 \end{problem}
 
 \end{frame}
+\note[itemize]{
+\item El problema de \kmedian ens diu que donat un graf no dirigit $H$ 
+i un enter positiu $k$ es vol trobar un subconjunt $S$ de $V(H)$ de $k$ vèrtex tal que es minimitzi 
+la suma de les distancies de cada vèrtex de $V(H)$ al vèrtex mes proper de $S$.
+\item Es pot expressar formalment aixi:
+\item on $m_S(v)$ es el vèrtex de $S$ mes proper a $v$.
+\item (també es podria haver expressat com a \kcenter utilitzant la definició de distancia de vèrtex a conjunt de vèrtex).
+}
 
 \begin{frame}{\kmedian}
 \begin{columns}
-
-\note[item]{
-     L'article de \textbf{Lin i Vitter} al que fa referencia el nostre article original per referir-se a la definició
-     de \kmedian, citen (entre altres) l'article de \textbf{Meggido i Supowit} en el que es demostren
-     tant \kmedian com \kcenter fent reduccions a 3-SAT.
-}
 
 \begin{column}{.5\textwidth}
     \begin{figure}
@@ -547,6 +580,11 @@ On $m_S(v)$ és el vèrtex de $S$ més proper a $v$.
 
 \end{columns}
 \end{frame}
+\note[itemize]{
+     \item L'article de \textbf{Lin i Vitter} al que fa referencia el nostre article original per referir-se a la definició
+     de \kmedian, citen (entre altres) l'article de \textbf{Meggido i Supowit} en el que es demostren
+     tant \kmedian com \kcenter fent reduccions des de 3-SAT.
+}
 
 \subsection{Reducció de \kmedian a \texorpdfstring{$\SUM$}{SUM}}
 \begin{frame}{Reducció de \kmedian a $\SUM$}
@@ -568,15 +606,22 @@ Apliquem el mateix principi que en el cas de \kcenter i $\MAX$:
     La millor resposta (\emph{best response}) del jugador $n+1$ amb les estratègies de la resta marcades
     per $G$ és una solució òptima de \kmedian.
     
-    \note{
-        %TODO: explicar en detall aixo
-        
-        La distancia de qualsevol vèrtex a $n+1$ serà sempre 1 + la distancia a la solució de \kmedian (conjunt $S$)
-        
-        La suma es nomes dels elements mes propers, per tant es manté la condició de $\dist$ a $m_S(v)$
-    }
-
 \end{frame}
+\note[itemize]{
+\item Apliquem el mateix mètode que en el cas de \kcenter i $\MAX$:
+\item Tenim un graf no dirigit $H$ de $n$ vèrtex amb un enter positiu $k$ on volem trobar una solució optima a \kmedian.
+
+\item Si considerem un graf $G$ tal que $U(G) = H$ i un joc BG on 
+$b_i$ es el grau de sortida del vèrtex $i$-essim de $G$ i $b_{n+1} = k$
+tenim que la millor resposta del jugador $n+1$ es una solució optima de \kmedian.
+\item Al igual que amb \kcenter la millor resposta del jugador $n+1$ el que farà es seleccionar 
+els $k$ vèrtex tal que es minimitzi la suma de la resta de vèrtex a $n+1$
+(i com que la distancia es la mateixa + 1 es també la distancia que minimitza la 
+suma al conjunt de vèrtex que es el que es busca a \kmedian )
+\item La distancia de qualsevol vèrtex a $n+1$ serà sempre 1 + la distancia a la solució de \kmedian (conjunt $S$)
+\item La suma es nomes dels elements mes propers, per tant es manté la condició de $\dist$ a $m_S(v)$
+\item Aixi doncs tant la versió $\SUM$ com la $\MAX$ son NP-hard.
+}
 
 
 \begin{frame}{Bibliografia}
