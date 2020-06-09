@@ -74,7 +74,7 @@ backend=biber,
 
 \begin{frame}
   \titlepage
-  \note{hello}
+  \note{HELLO}
   \note[item]{test}
 \end{frame}
 
@@ -113,7 +113,7 @@ backend=biber,
 
 \note{
  Hi ha moltes variants de jocs. La que expliquem aquí es la mes típica (la d classe).
- La que s estudia al paper es un altre que no te $\alpha$
+ La que s estudia al article es un altre que no te $\alpha$
 }
     
     \onslide<2->{\textbf{Cada node $u$ representa un jugador} i \textbf{cada jugador té una estratègia $S_u$}, representada per un conjunt d'arestes que el jugador
@@ -130,6 +130,7 @@ backend=biber,
         \item Minimitzar la creació d'arestes
         \item Minimitzar la distància als altres nodes
     \end{itemize}}
+    
 \end{frame}
 
 \begin{frame}{Network Creation Games}
@@ -139,12 +140,20 @@ backend=biber,
     \end{equation*}
     on $n_u = |S_u|$ i $G$ és el graf que representa la xarxa.
     
-    \vspace{1em}
+    \vspace{1.5em}
     
     Definim el \textbf{cost social} com la suma dels costos de tots els nodes:
     \begin{equation*}
         SC(S) = \alpha |E| + \sum_{u,v \in V(G)} \dist(u,v)
     \end{equation*}
+\end{frame}
+
+\begin{frame}{Network Creation Games}
+    El \textbf{preu de l'anarquia} (\emph{PoA}) mesura la pèrdua d'eficiència deguda a l'actitud egoista dels jugadors. Es calcula:
+    \begin{equation*}
+        PoA = \frac{\max_{s \in S} SC(s)}{\min_{e \in E} SC(e)}
+    \end{equation*}
+    on $E \subseteq S$ és el conjunt amb totes les estratègies en equilibri.
 \end{frame}
 
 \subsection{Bounded Budget Network Creation Game}
@@ -187,70 +196,10 @@ Definicions:
     cost mantenint fixes les estratègies de la resta de vèrtexs.
 \end{frame}
 
-\subsection{Resultats}
-\begin{frame}{Resultats}
-% yes?
-% idk , nice XD
-% no se si aqui o en la explicacion del paper.
-% ya, es mi otra opcion jajaja 
-% en el paper hablan de los results de todo, nosotros solo comentamos de nuestra parte o de todo?
-% tal como lo decia merca es comentar todo. en plan como explicar lo que dice en el abstract basicamente.
-% por eso que igual mejor al principio, pero ni idea. Tambien depende de k digas o como lo digas.
-% idk
-% ok
-% okay pue primero hacemos la diapo y pensamos que decir y luego vemos si delante o detras (btw creo que mejor delante)+1
-% lo pongo delante y luego ya si eso lo movemos
-
-% mmmhhh qiuzas al menos se tendria que poner despues de nombrar las dos versiones
-
-% exacto o al final, pq son las conclusiones del paper 
-% ya, pero no son las conclusiones de lo nuestro, nose
-
-Es demostra que:
-\begin{itemize}
-    % Primer de tot es demostra que
-    \item Per tota seqüencia no negativa $ (b_1, b_2, \dots , b_n)$ en el joc $ (b_1, b_2, \dots , b_n)\text{-BG} $ hi ha un equilibri de Nash pur i el preu d'estabilitat és $\Theta(1)$ en les dues versions.
-    
-    \vspace{1em}
-    
-    \item En els casos on la suma dels pressuposts és igual a $n-1$ el \emph{PoA}
-    és~$\Theta(n)$ i~$\Theta(\log n)$ en~$\MAX$ i~$\SUM$ respectivament.
-    
-    \vspace{1em}
-    
-    \item El \emph{PoA} quan el pressupost de tots els jugadors és igual a $1$ és $\Theta(1)$ en les dues versions.
-    
-    % 1em es la altura de una M mayusulca, mas facil de ver k los mm imo.
-    % Xd
-    % tambien hay ex k es la x minuscula.
-    % interesting jajaj todos los dias se aprende algo nuevo con \LaTeixB
-
-    \vspace{1em} % mejor usar em en vez de mm.
-    % yo lo he copiado de las diaps de arriba pues yo siempre uso em, alguien lo ha cambiado XD
-    % k en verdad da igual, pero em depende del tamano de la letra, no de la mida de la pantalla.
-    % como no cambiaremos el tamano de las diapos suda.
-    % te habias dejado 2 "3mm" nice
-    
-    \item A mesura que s'incrementa el pressupost dels jugadors el diàmetre del graf \textbf{no} disminueix. Per la versió de $\MAX$ hi han instàncies amb tots el pressuposts positius on el PoA és $\Omega(\sqrt{\log n})$.
-    
-    \vspace{1em}
-    
-    \item 
-    
-    % y si no ponemos este texto inicial? en plan no hace falta escribirlo todo, uno de nosotros ya lo explicara 
-    % lo podemos poner en la note y que quien diga esta parte lo comente
-    % exacto
-    \note{Al paper s'estudien diverses propietats dels \emph{equilibrium graphs}. En particular s'analitza el diàmetre dels grafs en alguns casos especials. Aquest anàlisi resulta en uns límits del preu de l'anarquia (PoA) pels diferents casos.}
-    
-\end{itemize}
-
-\end{frame}
-
-
 \section{Definició dels models}
 
 \begin{frame}{Definició dels models}
-    En el paper\cite{ehsani_bounded_2015} es consideren 2 models de \emph{bounded budget network creation games}:
+    A l'article~\cite{ehsani_bounded_2015} es consideren 2 models de \emph{bounded budget network creation games}:
     
     \vspace{1.5em}
     
@@ -301,11 +250,71 @@ El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de comp
 
 \end{frame}
 
+\subsection{Resultats}
+\begin{frame}[allowframebreaks]{Resultats}
+% yes?
+% idk , nice XD
+% no se si aqui o en la explicacion del article.
+% ya, es mi otra opcion jajaja 
+% en el article hablan de los results de todo, nosotros solo comentamos de nuestra parte o de todo?
+% tal como lo decia merca es comentar todo. en plan como explicar lo que dice en el abstract basicamente.
+% por eso que igual mejor al principio, pero ni idea. Tambien depende de k digas o como lo digas.
+% idk
+% ok
+% okay pue primero hacemos la diapo y pensamos que decir y luego vemos si delante o detras (btw creo que mejor delante)+1
+% lo pongo delante y luego ya si eso lo movemos
+
+% TODO
+% mmmhhh qiuzas al menos se tendria que poner despues de nombrar las dos versiones
+
+% exacto o al final, pq son las conclusiones del article 
+% ya, pero no son las conclusiones de lo nuestro, nose
+
+Es demostra que:
+\begin{itemize}
+    % Primer de tot es demostra que
+    \item Per tota seqüencia no negativa $ (b_1, b_2, \dots , b_n)$ en el joc $ (b_1, b_2, \dots , b_n)\text{-BG} $ hi ha un equilibri de Nash i el preu d'estabilitat és $\Theta(1)$ en les dues versions.
+    
+    \vspace{1em}
+    
+    \item En els casos on la suma dels pressuposts és igual a $n-1$ el \emph{PoA}
+    és~$\Theta(n)$ i~$\Theta(\log n)$ en~$\MAX$ i~$\SUM$ respectivament.
+    
+    \vspace{1em}
+    
+    \item El \emph{PoA} quan el pressupost de tots els jugadors és igual a $1$ és $\Theta(1)$ en les dues versions.
+    
+    \vspace{1em}
+    
+    \item A mesura que s'incrementa el pressupost dels jugadors el diàmetre del graf \textbf{no} disminueix. Per la versió de $\MAX$ hi han instàncies amb tots el pressuposts positius on el \emph{PoA} és $\Omega(\sqrt{\log n})$.
+    
+    \vspace{1em}
+    
+    \item En la versió $\SUM$ el \emph{PoA} te com a límit superior $2^{O(\sqrt{\log n})}$.
+
+    \vspace{1em}
+    
+    \item Pel model $\SUM$, si cada jugador té pressupost $k$, llavors tots els \emph{equilibrium graphs} de diàmetre $3$ seran $k$-\textsc{connected}.
+    
+    
+    \note{A l-article s'estudien diverses propietats dels \emph{equilibrium graphs}. En particular s'analitza el diàmetre dels grafs en alguns casos especials. Aquest anàlisi resulta en uns límits del preu de l'anarquia (\emph{PoA}) pels diferents casos.}
+    
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{Table1_PoA_Bounds}
+\caption{Taula extreta del article \cite{ehsani_bounded_2015}}
+\end{figure}
+
+\end{frame}
+
+
 \section{Computar best response \'{e}s NP-hard en ambdós models}
 \subsection{Theorem 2.1}
 \begin{frame}{Teorema}
 
-    Al paper s'enuncia i demostra el següent teorema:
+    L'article s'enuncia i demostra el següent teorema:
     
     \begin{theorem}
     The problem of finding a player's best response in both $\MAX$ and $\SUM$ versions of the bounded
@@ -320,7 +329,7 @@ El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de comp
     
 \end{frame}
 
-\begin{frame}{Papers citats}
+\begin{frame}{Articles citats}
 \begin{columns}
 
 \begin{column}{0.5\textwidth}
@@ -330,10 +339,10 @@ El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de comp
 \end{figure}
 
 \note[item] {
-    Al paper de Wen-Lian \textbf{Hsu} i George L. \textbf{Nemhauser} es demostra que \kcenter es NP-hard fent una reduccio
+    L'article de Wen-Lian \textbf{Hsu} i George L. \textbf{Nemhauser} es demostra que \kcenter es NP-hard fent una reduccio
     de \emph{dominating set}.
-    \item Al paper de \textbf{Lin i Vitter} al que fa referencia el nostre paper original per referirse a la definicio
-    de \kmedian, citen al paper de \textbf{Meggido i Supowit} en el que es demostren tant \kmedian com \kcenter
+    \item L'article de \textbf{Lin i Vitter} al que fa referencia el nostre article original per referirse a la definicio
+    de \kmedian, citen al article de \textbf{Meggido i Supowit} en el que es demostren tant \kmedian com \kcenter
     fent reduccions a 3-SAT.
 }
 \end{column}
