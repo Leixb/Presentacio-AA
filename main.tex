@@ -164,7 +164,7 @@ Definicions:
 \begin{itemize}
     \item Donat un graf dirigit $G$, denotem el seu conjunt de vèrtexs com $V(G)$.
     \item $U(G)$ es un graf no-dirigit obtingut ignorant les direccions en $G$.
-    \item Si $\overrightarrow{uv}, \overrightarrow{vu} \in G$ llavors $uv \in U(G)$ te multiplicitat 2 i
+    \item Si $\overrightarrow{uv}, \overrightarrow{vu} \in G$ llavors $uv \in U(G)$ te multiplicitat $2$ i
         anomenem la parella $\{u, v\}$ \emph{brace}.
     \item $\dist(u, v)$ denota la distancia entre $u$ i $v$ a $U(G)$.
     \item Si $u$ i $v$ estan en components connexos diferents de $U(G)$ llavors
@@ -180,7 +180,7 @@ Definicions:
     Denotem un \emph{Bounded budget network creation game} com:
     $$ (b_1, b_2, \dots , b_n)\text{-BG} $$
     
-    On $b_1,b_2, \dots , b_n$ són enters no negatius que representen el pressupost de cada jugador ($n$ es el nombre de jugadors).
+    On $b_1,b_2, \dots , b_n$ són enters no negatius que representen el pressupost de cada jugador ($n$ és el nombre de jugadors).
     
     \vspace{1em}
     
@@ -190,7 +190,7 @@ Definicions:
     \vspace{1em}
     
     Podem construir un graf $G$ a partir del conjunt de totes les estratègies afegint un vèrtex $\overrightarrow{u_iv_j}$
-    a $G$ si i nomes si $j \in S_i$. Anomenen a aquests grafs \emph{realitzadors} de
+    a $G$ si i només si $j \in S_i$. Anomenen a aquests grafs \emph{realitzadors} de
     $ (b_1, b_2, \dots , b_n)\text{-BG} $.
     
     \vspace{1em}
@@ -312,11 +312,11 @@ Definim la funció de cost del model $\MAX$ com:
     c_{\MAX}(u) = \max \{ \dist(u, v) : v \in V(G) \} + (\kappa - 1)n^2
 \end{equation}
 
-On $\kappa$ es el nombre de components connexos de $U(G)$.
+On $\kappa$ és el nombre de components connexos de $U(G)$.
 
 \vspace{2em}
 
-El primer terme $\max \{ \dist(u, v) : v \in V(G) \}$ es l'excentricitat de $u$.
+El primer terme $\max \{ \dist(u, v) : v \in V(G) \}$ és l'excentricitat de $u$.
 
 El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de components connexos.
 
@@ -386,7 +386,7 @@ Es demostra que:
 \begin{frame}{Resultats}
 \begin{itemize}[<+->] 
     
-    \item En la versió $\SUM$ el \emph{PoA} te com a límit superior $2^{O(\sqrt{\log n})}$.
+    \item En la versió $\SUM$ el \emph{PoA} té com a límit superior $2^{O(\sqrt{\log n})}$.
 
     \vspace{1em}
     
@@ -453,7 +453,7 @@ Es demostra que:
 
 \begin{problem}[\kcenter]
 Donat un graf no-dirigit $H$ i un enter positiu $k$ es vol trobar un subconjunt $S$ de $k$
-vèrtexs que minimitzi la distancia màxima de un vèrtex a $S$:
+vèrtexs que minimitzi la distància màxima de un vèrtex a $S$:
 
 \begin{equation}
 \min_{S \subseteq V(H):|S|=k} \left( \max_{v \in V(H)} \dist(v, S) \right)
@@ -472,10 +472,10 @@ vèrtexs que minimitzi la distancia màxima de un vèrtex a $S$:
     \caption{Wen-Lian Hsu i George L. Nemhauser. (1979) \cite{hsu_easy_1979} }
     \end{figure}
     \note[item]{
-        \item al article de Hsu i Nemhauser es demostra que la $\alpha$-aproximacio de \kcenter es NP-hard per $\alpha<2$
+        \item al article de Hsu i Nemhauser es demostra que la $\alpha$-aproximació de \kcenter és NP-hard per $\alpha<2$
         fent una reducció de dominating set (NP-complet).
         \item Un graf te un dominating set de mida $k$ iff el \kcenter amb cost 1 per tots els edges
-        te com a millor resposta de tots els nodes un valor tal que la distancia es 1.
+        te com a millor resposta de tots els nodes un valor tal que la distancia és 1.
     }
 \end{frame}
 
@@ -487,12 +487,12 @@ vèrtexs que minimitzi la distancia màxima de un vèrtex a $S$:
     \vspace{2em}
     
     Considerem ara un graf $G$ tal que $U(G) = H$ i un joc $ (b_1, b_2, \dots , b_n, b_{n+1})\text{-BG} $ on
-    $b_i$ es el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
+    $b_i$ és el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
     
     \vspace{2em}
     
     La millor resposta (\emph{best response}) del jugador $n+1$ amb les estratègies de la resta marcades
-    per $G$ es una solució òptima de \kcenter.
+    per $G$ és una solució òptima de \kcenter.
     
     \note{
         %TODO: explicar en detall aixo
@@ -506,7 +506,7 @@ vèrtexs que minimitzi la distancia màxima de un vèrtex a $S$:
 
 \begin{problem}[\kmedian]
 Donat un graf no dirigit $H$ i un enter positiu $k$ es vol trobar un conjunt $S \subseteq V(H)$ de $k$ vèrtexs
-tal que es minimitzi la suma de les distancies de cada vèrtex en $V(H)$ a el vèrtex mes proper
+tal que es minimitzi la suma de les distancies de cada vèrtex en $V(H)$ a el vèrtex més proper
 de $S$.
 
 \begin{equation}
@@ -515,7 +515,7 @@ de $S$.
 \right)
 \end{equation}
 
-On $m_S(v)$ es el vèrtex de $S$ mes proper a $v$.
+On $m_S(v)$ és el vèrtex de $S$ més proper a $v$.
 % quizas aqui podemos poner algo en plan m_S(v) = min_{u \in S} dist(u,v)
 
 \end{problem}
@@ -561,12 +561,12 @@ Apliquem el mateix principi que en el cas de \kcenter i $\MAX$:
     \vspace{2em}
     
     Considerem ara un graf $G$ tal que $U(G) = H$ i un joc $ (b_1, b_2, \dots , b_n, b_{n+1})\text{-BG} $ on
-    $b_i$ es el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
+    $b_i$ és el grau de sortida del vèrtex $i$ de $G$ i $b_{n+1} = k$.
     
     \vspace{2em}
     
     La millor resposta (\emph{best response}) del jugador $n+1$ amb les estratègies de la resta marcades
-    per $G$ es una solució òptima de \kmedian.
+    per $G$ és una solució òptima de \kmedian.
     
     \note{
         %TODO: explicar en detall aixo
