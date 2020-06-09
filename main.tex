@@ -171,7 +171,7 @@ Definicions:
         $\dist(u, v) = C_{inf} = n^2$.
     \item<6-> No tenim $\alpha$, es a dir, les arestes no tenen cost.
         
-    \note{El motiu del valor de $C_{inf} = n^2$ s'explica mes endavant}
+    \note{El motiu del valor de $C_{inf} = n^2$ s'explica més endavant a $\SUM$} 
     
 \end{itemize}
 \end{frame} 
@@ -274,6 +274,35 @@ Per tant s incentiva la reducció de components connexos al igual que a $\SUM$.
 
 \end{frame}
 
+\begin{frame}{Model $\SUM$}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \centering
+        \begin{figure}
+        \includegraphics[scale=0.75]{u-crop}
+        \end{figure}
+        \vspace{-1em}
+        {\large $U(G)$}
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+        Volem computar $c_{\SUM}(3)$
+        
+        \vspace{1em}
+
+        \begin{itemize}
+            \item[] $\dist(3,1) = 2$ 
+            \item[] $\dist(3,2) = 1$
+            \item[] $\dist(3,4) = 2$ 
+        \end{itemize}
+        
+        \vspace{1em}
+        
+        $\therefore c_{\SUM}(3) = 5$
+        \end{column}
+    \end{columns}
+\end{frame}
+
 \subsection{\texorpdfstring{$\MAX$}{MAX}}
 \begin{frame}{Model $\MAX$}
 
@@ -291,6 +320,41 @@ El primer terme $\max \{ \dist(u, v) : v \in V(G) \}$ es l'excentricitat de $u$.
 
 El terme $(\kappa - 1)n^2$ s'afegeix per incentivar decréixer el nombre de components connexos.
 
+\end{frame}
+
+\begin{frame}{Model $\MAX$}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \centering
+        \begin{figure}
+        \includegraphics[scale=0.75]{u-crop}
+        \end{figure}
+        \vspace{-1em}
+        {\large $U(G)$}
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+        Volem computar $c_{\MAX}(3)$
+        
+        \vspace{1em}
+
+        \begin{itemize}
+            \item[] $\dist(3,1) = 2$ 
+            \item[] $\dist(3,2) = 1$
+            \item[] $\dist(3,4) = 2$ 
+        \end{itemize}
+        
+        \vspace{1em}
+        
+        Cal tenir en compte que $\kappa = 1$
+        
+        \vspace{0.5em}
+        
+        \note{$n = 4$}
+        
+        $\therefore c_{\MAX}(3) = 2 + 0 \cdot 4^2 = 2$
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \subsection{Resultats}
@@ -517,9 +581,6 @@ Apliquem el mateix principi que en el cas de \kcenter i $\MAX$:
 
 \begin{frame}{Bibliografia}
 \printbibliography
-\end{frame}
-
-\begin{frame}
 \end{frame}
 
 \end{document}
