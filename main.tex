@@ -1,6 +1,6 @@
-\documentclass[aspectratio=169]{beamer}
+%\documentclass[aspectratio=169]{beamer}
 % TODO cambiar a la de dalt
-%\documentclass[aspectratio=169,handout]{beamer}
+\documentclass[aspectratio=169,handout]{beamer}
 \usepackage{pgfpages}
 
 %
@@ -23,7 +23,7 @@
 %    + explicar per sobre com sabem que es NP-hard
 
 %\setbeameroption{show only notes}
-\setbeameroption{show notes on second screen}
+%\setbeameroption{show notes on second screen}
 
 \usepackage[catalan]{babel}
 \usepackage[utf8]{inputenc}
@@ -138,9 +138,9 @@ backend=biber,
 \begin{frame}{Network Creation Games}
     Cada node vol minimitzar la seva funció de cost, que definim com:
     \begin{equation*}
-        C(u) = \alpha n_u + \sum_{v \in V(G)}\dist(u,v)
+        c(u) = \alpha n_u + \sum_{v \in V(G)}\dist(u,v)
     \end{equation*}
-    on $n_u = |S_u|$ i $G$ és el graf que representa la xarxa.
+    On $n_u = |S_u|$ i $G$ és el graf que representa la xarxa.
     
     \vspace{1.5em}
     
@@ -155,21 +155,21 @@ backend=biber,
     \begin{equation*}
         PoA = \frac{\max_{s \in S} SC(s)}{\min_{e \in E} SC(e)}
     \end{equation*}
-    on $E \subseteq S$ és el conjunt amb totes les estratègies que són equilibris.
+    On $E \subseteq S$ és el conjunt amb totes les estratègies que són equilibris.
 \end{frame}
 
 \subsection{Bounded Budget Network Creation Game}
 \begin{frame}{Bounded Budget Network Creation Game}
 Definicions:
 \begin{itemize}
-    \item<1-> Donat un graf dirigit $G$, denotem el seu conjunt de vèrtexs com $V(G)$.
-    \item<2-> $U(G)$ es un graf no-dirigit obtingut ignorant les direccions en $G$.
-    \item<3-> Si $\overrightarrow{uv}, \overrightarrow{vu} \in G$ llavors $uv \in U(G)$ te multiplicitat 2 i
+    \item Donat un graf dirigit $G$, denotem el seu conjunt de vèrtexs com $V(G)$.
+    \item $U(G)$ es un graf no-dirigit obtingut ignorant les direccions en $G$.
+    \item Si $\overrightarrow{uv}, \overrightarrow{vu} \in G$ llavors $uv \in U(G)$ te multiplicitat 2 i
         anomenem la parella $\{u, v\}$ \emph{brace}.
-    \item<4-> $\dist(u, v)$ denota la distancia entre $u$ i $v$ a $U(G)$.
-    \item<5-> Si $u$ i $v$ estan en components connexos diferents de $U(G)$ llavors
+    \item $\dist(u, v)$ denota la distancia entre $u$ i $v$ a $U(G)$.
+    \item Si $u$ i $v$ estan en components connexos diferents de $U(G)$ llavors
         $\dist(u, v) = C_{inf} = n^2$.
-    \item<6-> No tenim $\alpha$, es a dir, les arestes no tenen cost.
+    \item No tenim $\alpha$, és a dir, les arestes no tenen cost.
         
     \note{El motiu del valor de $C_{inf} = n^2$ s'explica més endavant a $\SUM$} 
     
@@ -195,7 +195,7 @@ Definicions:
     
     \vspace{1em}
     
-    Direm que un vèrtex esta en la millor resposta (\emph{best response}) si no pot disminuir el seu
+    Direm que un vèrtex està en la millor resposta (\emph{best response}) si no pot disminuir el seu
     cost mantenint fixes les estratègies de la resta de vèrtexs.
 \end{frame}
 
@@ -390,7 +390,7 @@ Es demostra que:
 
     \vspace{1em}
     
-    \item Pel model $\SUM$, si cada jugador té pressupost $k$, llavors tots els \emph{equilibrium graphs} de diàmetre $3$ seran $k$-\textsc{connected}.
+    \item Pel model $\SUM$, si cada jugador té pressupost $k$, llavors tots els \emph{equilibrium graphs} de diàmetre major $3$ seran $k$-\textsc{connected}.
     
 \end{itemize} 
 
@@ -582,6 +582,14 @@ Apliquem el mateix principi que en el cas de \kcenter i $\MAX$:
 \begin{frame}{Bibliografia}
 \printbibliography
 \end{frame}
+
+\begin{frame}{Index}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
 
 \end{document}
 
