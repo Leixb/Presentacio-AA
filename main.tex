@@ -179,6 +179,7 @@ Definicions:
 \begin{frame}{Bounded Budget Network Creation Game}
     Denotem un \emph{Bounded budget network creation game} com:
     $$ (b_1, b_2, \dots , b_n)\text{-BG} $$
+    
     On $b_1,b_2, \dots , b_n$ són enters no negatius que representen el pressupost de cada jugador ($n$ es el nombre de jugadors).
     
     \vspace{1em}
@@ -200,47 +201,43 @@ Definicions:
 
 \begin{frame}{Bounded Budget Network Creation Game}
     
-    \color{darkblue}
-    {\Large Exemple}
-    \color{black}
+    %\color{darkblue}
+    %{\Large Exemple}
+    %\color{black}
+    %
+    %\vspace{1em}
     
+    \begin{center}
+    $(2,2,1,0)-\text{BG}$ \qquad $S = (\{2,4\},\{1,4\},\{2\},\{\})$
+    \end{center}
+
     \vspace{1em}
-    
-    $(2,2,1,0)-\text{BG}$
-    
-    $S = (\{2,4\},\{1,4\},\{2\},\{\})$
 
     \begin{columns}
-
-\begin{column}{0.5\textwidth}
-\begin{figure}
-\includegraphics[width=\textwidth]{k-center_dominating_set}
-\caption{Wen-Lian Hsu i George L. Nemhauser. (1979) \cite{hsu_easy_1979} }
-\end{figure}
-
-\note[item] {
-    L'article de Wen-Lian \textbf{Hsu} i George L. \textbf{Nemhauser} es demostra que \kcenter es NP-hard fent una reduccio
-    de \emph{dominating set}.
-    \item L'article de \textbf{Lin i Vitter} al que fa referencia el nostre article original per referirse a la definicio
-    de \kmedian, citen al article de \textbf{Meggido i Supowit} en el que es demostren tant \kmedian com \kcenter
-    fent reduccions a 3-SAT.
-}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{figure}
-\includegraphics[width=\textwidth]{abstract_megiddo}
-\caption{Nimrod Megiddo i Kenneth Supowit. (1984) \cite{megiddo_complexity_1984} }
-\end{figure}
-\end{column}
-
-\end{columns}    
+        \begin{column}{0.5\textwidth}
+        \centering
+        \begin{figure}
+        \includegraphics[scale=0.75]{digraph-crop}
+        \end{figure}
+        \vspace{-1em}
+        {\large $G$}
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+        \centering
+        \begin{figure}
+        \includegraphics[scale=0.75]{u-crop}
+        \end{figure}
+        \vspace{-1em}
+        {\large $U(G)$}
+        \end{column}
+    \end{columns}    
     
 \end{frame}
 
-\begin{frame}{Bounded Budget Network Creation Game}
-    Per aquest joc
-\end{frame}
+% \begin{frame}{Bounded Budget Network Creation Game}
+%     Per aquest joc
+% \end{frame}
 
 \section{Definició dels models}
 
@@ -344,7 +341,7 @@ Es demostra que:
 \subsection{Theorem 2.1}
 \begin{frame}{Teorema}
 
-    L'article s'enuncia i demostra el següent teorema:
+    L'article enuncia i demostra el següent teorema:
     
     \begin{theorem}
     The problem of finding a player's best response in both $\MAX$ and $\SUM$ versions of the bounded
