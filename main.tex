@@ -429,34 +429,6 @@ diu que el problema de trobar la best response tant en la version $\SUM$ com en 
 \item On tant \kcenter com \kmedian son NP-hard.
 }
 
-% \begin{frame}{Articles citats}
-% \begin{columns}
-
-% \begin{column}{0.5\textwidth}
-% \begin{figure}
-% \includegraphics[width=\textwidth]{k-center_dominating_set}
-% \caption{Wen-Lian Hsu i George L. Nemhauser. (1979) \cite{hsu_easy_1979} }
-% \end{figure}
-
-% \note[item] {
-%     L'article de Wen-Lian \textbf{Hsu} i George L. \textbf{Nemhauser} es demostra que \kcenter es NP-hard fent una reduccio
-%     de \emph{dominating set}.
-%     \item L'article de \textbf{Lin i Vitter} al que fa referencia el nostre article original per referirse a la definicio
-%     de \kmedian, citen al article de \textbf{Meggido i Supowit} en el que es demostren tant \kmedian com \kcenter
-%     fent reduccions a 3-SAT.
-% }
-% \end{column}
-
-% \begin{column}{0.5\textwidth}
-% \begin{figure}
-% \includegraphics[width=\textwidth]{abstract_megiddo}
-% \caption{Nimrod Megiddo i Kenneth Supowit. (1984) \cite{megiddo_complexity_1984} }
-% \end{figure}
-% \end{column}
-
-% \end{columns}
-% \end{frame}
-
 \subsection{\kcenter}
 \begin{frame}{\kcenter}
 
@@ -488,11 +460,11 @@ es vol trobar un conjunt $S$ de $k$ vèrtex que minimitza la distancia màxima d
     \end{figure}
 \end{frame}
 \note[itemize]{
-    \item L'article cita un article de Hsu i Nemhauser en el cual es demostra que la 
+    \item L'article cita un article de Hsu i Nemhauser en el qual es demostra que la 
     $\alpha$-aproximació de \kcenter és NP-hard per $\alpha<2$
     fent una reducció de dominating set (NP-complet).
-    \item Un graf te un dominating set de mida $k$ iff el \kcenter amb cost 1 per tots els edges
-    te com a millor resposta de tots els nodes un valor tal que la distancia és 1.
+    \item Un graf te un dominating set de mida $k$ si i nomes si el \kcenter amb cost 1 per totes les arestes
+    en la solucio optima te com a distancia màxima d'entre tots els nodes a $S$ $1$.
 }
 
 \subsection{Reducció de \kcenter a \texorpdfstring{$\MAX$}{MAX}}
